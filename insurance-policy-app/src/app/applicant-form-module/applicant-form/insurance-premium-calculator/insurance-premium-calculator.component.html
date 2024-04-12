@@ -1,0 +1,37 @@
+<form [formGroup]="insuranceForm" style="background-color:rgba(95, 102, 101, 0.692); padding-top: 3rem; padding-bottom: 3rem;padding-right: 3rem;padding-left: 3rem;" (ngSubmit)="calculatePremium()" class="needs-validation" novalidate>
+
+    <div class="form-group">
+      <label for="age">Age:</label>
+      <input type="number" id="age" formControlName="age" class="form-control">
+      <div class="text-danger" *ngIf="insuranceForm .controls?.['age']!.errors?.['required'] && insuranceForm.controls?.['age']!.touched">
+        Age is required.
+      </div>
+      <div class="text-danger" *ngIf="insuranceForm .controls?.['age']!.errors?.['min'] && insuranceForm.controls?.['age']!.touched">
+        Age should be 18 between 100.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="gender">Gender:</label>
+      <select id="gender" formControlName="gender" class="form-control">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+      <div class="text-danger" *ngIf="insuranceForm .controls?.['gender']!.errors?.['required'] && insuranceForm.controls?.['gender']!.touched">
+        Gender is required.
+      </div>
+    </div>
+      
+    <!-- <div class="form-group" *ngIf="insuranceForm.get('smoker').value"> -->
+      <div class="form-group" *ngIf="isTobaccoUser">
+      <label for="yearsOfSmoking">Years of Smoking:</label>
+      <input type="number" id="yearsOfSmoking" formControlName="yearsOfSmoking" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2" >Calculate Premium</button>
+  </form>
+
+  <div  *ngIf="premiumCalculated" class="mt-4">
+    <h4>Insurance Premium:</h4>
+    <p class="lead">{{ calculatedPremium | currency:'USD':'symbol':'1.2-2' }}</p>
+  </div>

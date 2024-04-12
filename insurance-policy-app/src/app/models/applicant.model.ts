@@ -4,13 +4,13 @@ export class  Applicant {
     lastName: string;
     dateOfBirth: Date; 
     annualIncome: number;
-    ifTobaccoUser: boolean;
+    ifTobaccoUser: number;
     constructor() {
       this.id = 0;
       this.firstName = '';
       this.lastName = '';
       this.dateOfBirth =new Date('1968-11-16T00:00:00');
       this.annualIncome = 0;
-      this.ifTobaccoUser = false;
+      this.ifTobaccoUser = 0;
     }
   }
